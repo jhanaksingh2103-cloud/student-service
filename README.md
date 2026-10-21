@@ -153,3 +153,5 @@ Install these extensions for best experience:
 - [ ] Delivery partner tracking (live map)
 - [ ] Referral system for students
 - [ ] PWA (mobile app-like experience)
+
+# student-service
