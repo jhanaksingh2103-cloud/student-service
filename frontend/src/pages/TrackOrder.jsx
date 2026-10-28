@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import axios from '../api'
 import toast from 'react-hot-toast'
 import styles from './TrackOrder.module.css'
 

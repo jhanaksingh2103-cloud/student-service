@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../api'
 import BookingModal from '../components/BookingModal'
 import styles from './Services.module.css'
 
