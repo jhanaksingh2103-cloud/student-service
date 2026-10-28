@@ -2,8 +2,10 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const path = require('path');
 
-dotenv.config();
+// Load the backend's environment file regardless of the process working directory.
+dotenv.config({ path: path.join(__dirname, '.env') });
 
 const app = express();
 
@@ -21,9 +23,16 @@ app.use('/api/affidavit',require('./routes/affidavit'));
 app.get('/api/health', (req, res) => res.json({ status: 'OK', message: 'StudyServe API running' }));
 
 // Connect DB & Start
-mongoose.connect(process.env.MONGO_URI)
+const mongoUri = process.env.MONGO_URI;
+
+if (!mongoUri) {
+  console.error('❌ MongoDB connection failed: MONGO_URI is missing from backend/.env');
+  process.exit(1);
+}
+
+mongoose.connect(mongoUri)
   .then(() => {
-    console.log('✅ MongoDB connected');
+    console.log('✅ MongoDB Atlas connected successfully');
     app.listen(process.env.PORT || 5000, () =>
       console.log(`🚀 Server running on http://localhost:${process.env.PORT || 5000}`)
     );
